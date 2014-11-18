@@ -6,7 +6,6 @@ Helper for refworks_app.py
 
 import datetime, os
 import requests
-from bs4 import BeautifulSoup
 from werkzeug.contrib.cache import FileSystemCache
 
 
