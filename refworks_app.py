@@ -25,8 +25,6 @@ def hello_world():
     return_dict = { u'response': u'hi there!' }
     return flask.jsonify( return_dict )
 
-
-# @app.route( u'/v2/<key>/<value>/', methods=['GET'] )  # eg, /availability_service/v2/bib/b1234/
 @app.route( u'/v2/marc/<bib_id>/', methods=['GET'] )  # /addto_refworks/v2/bib/b1234567
 def return_marc( bib_id ):
     log.debug( u'- in refworks_app.return_marc(); starting' )
