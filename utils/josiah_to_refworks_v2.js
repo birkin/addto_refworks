@@ -1,4 +1,7 @@
-// this file must be web-accessible.
+/*
+ * Evaluates whether page is a bib page, and if so, displays an "Add to Refworks" image button.
+ * This file must be web-accessible; it's accessed from Josiah.
+ */
 
 console.log( "josiah_to_refworks_v2.js START" );
 
@@ -61,6 +64,7 @@ function add_refworks_image( image ) {
   image.src=new_image.src;
   image.alt="Add to RefWorks";
   console.log( "image added" );
+  return;
 }
 
 
