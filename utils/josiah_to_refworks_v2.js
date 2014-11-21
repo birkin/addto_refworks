@@ -64,6 +64,14 @@ function add_refworks_image( image ) {
   image.src=new_image.src;
   image.alt="Add to RefWorks";
   console.log( "image added" );
+  // return;
+  update_click_url( image );
+}
+
+function update_click_url( image ) {
+  console.log( "image.parentElement, " + image.parentElement );
+  parent_a_tag = image.parentElement;
+  parent_a_tag.href = "FOO";
   return;
 }
 
