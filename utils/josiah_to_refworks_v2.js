@@ -7,6 +7,7 @@ console.log( "josiah_to_refworks_v2.js START" );
 
 
 var bibnum = null;
+var refworks_url = null;
 
 $(document).ready(
   function() {
@@ -34,14 +35,23 @@ function get_bibnum() {
 		var url = target_element.toString();
 		var start_position = url.lastIndexOf( "b" );
 		bibnum = url.substr( start_position, 8 );
+    build_refworks_url();
 	}
 	console.log( "bibnum, " + bibnum );
-	find_stub_image();
+}
+
+function build_refworks_url() {
+  /* Assembles and stores refworks url.
+   * Called by get_bibnum() when josiah page contains a bibnum.
+   */
+  var root_url = "http://www.refworks.com/express/ExpressImport.asp";
+  console.log( "refworks_url, " + refworks_url );
+  find_stub_image();
 }
 
 function find_stub_image() {
   /* Searches document's images to find the holder for the RefWorks image.
-   * Called by get_bibnum() when josiah page contains a bibnum.
+   * Called by build_refworks_url()
    */
 	if ( bibnum == null ) { return };
 	var images = document.images;
@@ -71,7 +81,7 @@ function add_refworks_image( image ) {
 function update_click_url( image ) {
   console.log( "image.parentElement, " + image.parentElement );
   parent_a_tag = image.parentElement;
-  parent_a_tag.href = "FOO";
+  parent_a_tag.href = "http://google.com";
   return;
 }
 
