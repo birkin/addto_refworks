@@ -75,7 +75,14 @@ function build_refworks_url() {
    * Called by add_refworks_image()
    */
   var root_url = "http://www.refworks.com/express/ExpressImport.asp";
-  refworks_url = "http://google.com";  // module var
+  var params = {
+    "vendor": "Marc Format",  // yes, there's a space there
+    "url": "http://library.brown.edu/josiah_to_refworks/processor_b.php?id=" + bibnum }
+  var encoded_params_list = [];
+   for ( var key in params ) {
+      encoded_params_list.push( encodeURIComponent(key) + "=" + encodeURIComponent(params[key]) ); }
+  encoded_params_string = encoded_params_list.join( "&" );
+  refworks_url = root_url + "?" + encoded_params_string;;  // module var
   console.log( "refworks_url, " + refworks_url );
   update_click_url();
 }
