@@ -35,10 +35,5 @@ class Helper( object ):
         marc_data = html[ start_position:end_position ]
         self.log.debug( u'in app_helper.Helper.extract_marc(); marc_data, `%s`' % marc_data )
         return marc_data
-        # # utf8_html = html.encode( 'utf-8' )
-        # soup = BeautifulSoup( html, 'html5lib' )
-        # pre_tag = soup.find_all( 'div' )
-        # self.log.debug( u'in app_helper.Helper.extract_marc(); type(pre_tag), `%s`' % type(pre_tag) )
-        # self.log.debug( u'in app_helper.Helper.extract_marc(); pre_tag, `%s`' % unicode(repr(pre_tag)) )
 
     # end class Helper()

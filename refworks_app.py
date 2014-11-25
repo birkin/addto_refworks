@@ -19,11 +19,11 @@ helper = app_helper.Helper( log )
 
 ## routes
 
-@app.route( u'/v2/hello_world/', methods=['GET'] )  # /addto_refworks/v2/hello_world/
-def hello_world():
-    log.debug( u'- in refworks_app.hello_world(); starting' )
-    return_dict = { u'response': u'hi there!' }
-    return flask.jsonify( return_dict )
+# @app.route( u'/v2/hello_world/', methods=['GET'] )  # /addto_refworks/v2/hello_world/
+# def hello_world():
+#     log.debug( u'- in refworks_app.hello_world(); starting' )
+#     return_dict = { u'response': u'hi there!' }
+#     return flask.jsonify( return_dict )
 
 @app.route( u'/v2/marc/<bib_id>/', methods=['GET'] )  # /addto_refworks/v2/bib/b1234567
 def return_marc( bib_id ):
@@ -31,8 +31,6 @@ def return_marc( bib_id ):
     page_html = helper.grab_html( bib_id )
     marc = helper.extract_marc( page_html )
     return marc
-    # return_dict = { u'response': u'marc_coming!' }
-    # return flask.jsonify( return_dict )
 
 
 
