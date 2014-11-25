@@ -77,7 +77,7 @@ var rfwrks = new function() {
     var root_url = "http://www.refworks.com/express/ExpressImport.asp";
     var params = {
       "vendor": "Marc Format",  // yes, there's a space there
-      "url": "http://library.brown.edu/josiah_to_refworks/processor_b.php?id=" + bibnum }
+      "url": "http://library.brown.edu/addto_refworks/v2/marc/" + bibnum + "/" }
     var encoded_params_list = [];
      for ( var key in params ) {
         encoded_params_list.push( encodeURIComponent(key) + "=" + encodeURIComponent(params[key]) ); }
