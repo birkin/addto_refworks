@@ -28,8 +28,11 @@ def hello_world():
 @app.route( u'/v2/marc/<bib_id>/', methods=['GET'] )  # eg, /addto_refworks/v2/marc/b1234567
 def return_marc( bib_id ):
     log.debug( u'- in refworks_app.return_marc(); starting' )
-    page_html = helper.grab_html( bib_id )
-    marc = helper.extract_marc( page_html )
+    ( marc, cache ) = helper.check_cache( bib_id )
+    if marc == None:
+        page_html = helper.grab_html( bib_id )
+        marc = helper.extract_marc( page_html )
+        cache.set( bib_id, marc )
     return marc
 
 

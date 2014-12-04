@@ -36,4 +36,15 @@ class Helper( object ):
         self.log.debug( u'in app_helper.Helper.extract_marc(); marc_data, `%s`' % marc_data )
         return marc_data
 
+    def check_cache( self, bib_id ):
+        """ Checks cache for marc. """
+        cache = FileSystemCache( self.cache_dir, threshold=500, default_timeout=self.cache_hours, mode=0664 )  # http://werkzeug.pocoo.org/docs/0.9/contrib/cache/
+        cache_key = bib_id
+        marc = cache.get( cache_key )
+        if marc == None:
+            self.log.debug( u'in app_helper.Helper.check_cache(); marc not found in cache' )
+        else:
+            self.log.debug( u'in app_helper.Helper.check_cache(); marc found in cache' )
+        return ( marc, cache )
+
     # end class Helper()
