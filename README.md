@@ -15,7 +15,7 @@
 
 #### intro...
 
-This page documents the Brown Library's work enabling a user of our [III-vendor](http://www.iii.com) library OPAC ("[Classic Josiah](http://josiah.brown.ed)") to add a citation to [RefWorks](http://refworks.com).
+This page documents the Brown Library's work enabling a user of our [III-vendor](http://www.iii.com) library OPAC ("[Classic Josiah](http://josiah.brown.edu)") to add a citation to [RefWorks](http://refworks.com).
 
 (Note: our main catalog is now outside the web-opac display, but these instructions are III specific.)
 
