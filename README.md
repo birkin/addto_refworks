@@ -15,7 +15,7 @@
 
 #### intro...
 
-This page documents the Brown Library's work enabling a user of our [III-vendor](http://www.iii.com) library OPAC ("[Classic Josiah](http://josiah.brown.ed)") to add a citation to [RefWork](http://refworks.com).
+This page documents the Brown Library's work enabling a user of our [III-vendor](http://www.iii.com) library OPAC ("[Classic Josiah](http://josiah.brown.ed)") to add a citation to [RefWorks](http://refworks.com).
 
 (Note: our main catalog is now outside the web-opac display, but these instructions are III specific.)
 
@@ -37,7 +37,7 @@ This implementation uses javascript and python.
             - this url is to a refworks ingestion url; it includes, as a parameter, a data-source url
         - attaches that url to an 'Add To RefWorks' image-button
     - on the 'Add To RefWorks' user-click, the user's browser hits the refworks url
-    - before the refworks window opens, refworks tries to get the data to be ingested from the data-source url-parameter. [Here](http://library.brown.edu/addto_refworks/v2/marc/b4069600/) is an example of the url that refworks follows to get the item data. Note that unlike the url _to_ refworks, refworks doesn't care at all about the data-source url -- it just wants to follow it and get data back in a specific format.
+    - before the refworks window opens, refworks tries to get the data to be ingested from the data-source url-parameter. [Here](http://library.brown.edu/addto_refworks/v2/marc/b4069600/) is an example of the url that refworks follows to get the item data. Note that unlike the url _to_ refworks, refworks doesn't care at all about the format of the data-source url -- it just wants to follow it and get data back in a specific format.
     - that data-source url goes, as shown above, to a library.brown.edu web-service, which is now written in python but could be written in anything
     - the web-service sees the bib-number, and accesses the 'coded-display' opac page ([example](http://josiah.brown.edu/search~S7?/.b4069600/.b4069600/1%2C1%2C1%2CB/marc~b4069600)), which contains the marc data, embedded in cruft
     - the web-service extracts the marc-data from the html, and sends the clean marc data back to refworks -- so from refworks' point of view, the data-source url simply returns good marc data, which refworks ingests
@@ -53,7 +53,7 @@ The refworks javascript in the bib-item page does three different things, as not
 - it creates the full url to refworks
 - it makes the 'Add To RefWorks' button appear on the bib-item page (as opposed to pages with multiple items), with the refworks url attached
 
-Regarding the RefWorks button, our implementation currently requires that the button image be displayed even on pages which display multiple items (we have to use the `EBADDRESS` field). Since the code is designed only to work with individual items, we 'hide' the default 'Add To RefWorks' button by making it a 1-pixel transparent button image. When the user accesses a page which only displays a single item, some JavaScript replaces the 1-pixel button image with the correct 'Add To RefWorks' button image. Sites that are able to tie the 'Add To RefWorks' button to the `WEBADDRESS` field may not require this part of the javascript code.
+Regarding the 'Add To RefWorks' button, our implementation currently requires that the button image be displayed even on pages which display multiple items (we have to use the `EBADDRESS` field). Since the code is designed only to work with individual items, we 'hide' the default 'Add To RefWorks' button by making it a 1-pixel transparent button image. When the user accesses a page which only displays a single item,  javascript replaces the 1-pixel button image with the correct 'Add To RefWorks' button image. Sites that are able to tie the 'Add To RefWorks' button to the `WEBADDRESS` field may not require this part of the javascript code. _(Note: this may be outdated -- the javascript may more intelligently build the image-link button now. Maybe not.)_
 
 ###### opac/catalog details
 
@@ -65,7 +65,7 @@ Some pieces that need to be set...
 - the code that references blank.gif
 - the code that references refworks.gif
 
-Detailed information on each of these six pieces follows. The information below is presented from the perspective: "Where should code be entered into the OPAC (and what exactly should be entered) in order to get the final html-output that works?"
+Detailed information on each of these pieces follows. The information below is presented from the perspective: "Where should code be entered into the OPAC (and what exactly should be entered) in order to get the final html-output that works?"
 
 ###### Piece: main javascript code
 
@@ -118,7 +118,7 @@ Detailed information on each of these six pieces follows. The information below 
 
 #### <a id="python_code"></a>python code
 
-The python webservice that refworks hits is written in Flask, a lightweight framework.
+The python webservice that refworks hits is written in [Flask](http://flask.pocoo.org), a terrific lightweight web-framework.
 
 The webservice part of the code is [here](https://github.com/birkin/addto_refworks/blob/f55b00da997f3972bdce3f19ed296376db994383/refworks_app.py#L28) -- it calls [helper](https://github.com/birkin/addto_refworks/blob/f55b00da997f3972bdce3f19ed296376db994383/utils/app_helper.py) code that hits the correct opac coded-display page, and parses the marc data out of the html.
 
@@ -136,7 +136,7 @@ The webservice part of the code is [here](https://github.com/birkin/addto_refwor
 
 - Others
     - [Ryerson University Library](http://innopac.lib.ryerson.ca/), for documenting their javascript and ColdFusion implementation in the above document. Though our architecture is different from Ryerson University's ColdFusion implementation, their logic was useful to start from, and we initially used their javascript nearly untouched.
-    - Bob Duncan, Lafayette College, and Hong Zhang, UNLV, for [notes](Refworks on Release 2007) regarding Millennium Release 2007.
+    - Bob Duncan, Lafayette College, and Hong Zhang, UNLV, for notes regarding Millennium Release 2007.
 
 ---
 
